@@ -163,7 +163,7 @@ function applyFilters() {
     const matchesGenre = selectedGenre === "all" || movie.genre === selectedGenre;
     return matchesSearch && matchesGenre;
   });
-
+  
   renderMovies(filtered);
 }
 
