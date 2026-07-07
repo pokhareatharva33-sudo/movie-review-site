@@ -40,6 +40,35 @@
     <p>Made with 🍿 by a BCA student learning web dev</p>
   </footer>
 
+  <!-- ===== MOVIE DETAIL / REVIEW MODAL ===== -->
+  <!-- Hidden by default. script.js fills this in and shows it on click. -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose">&times;</button>
+
+      <img class="modal-poster" id="modalPoster" src="" alt="" />
+      <h2 id="modalTitle"></h2>
+      <p class="movie-meta" id="modalMeta"></p>
+      <p class="movie-review" id="modalOriginalReview"></p>
+
+      <hr class="modal-divider" />
+
+      <h3>Your Reviews</h3>
+      <div id="modalUserReviews">
+        <!-- User-submitted reviews are listed here -->
+      </div>
+
+      <hr class="modal-divider" />
+
+      <h3>Add Your Review</h3>
+      <form id="reviewForm">
+        <input type="text" id="reviewerName" placeholder="Your name" required />
+        <textarea id="reviewerText" placeholder="What did you think of this movie?" required></textarea>
+        <button type="submit">Post Review</button>
+      </form>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
