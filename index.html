@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reel Talk — Movie Reviews</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="logo">🎬 Reel Talk</h1>
+      <p class="tagline">Honest reviews. No spoilers, promise.</p>
+    </div>
+  </header>
+
+  <!-- ===== SEARCH / FILTER BAR ===== -->
+  <section class="controls">
+    <input type="text" id="searchInput" placeholder="Search movies..." />
+
+    <select id="genreFilter">
+      <option value="all">All Genres</option>
+      <option value="Action">Action</option>
+      <option value="Drama">Drama</option>
+      <option value="Sci-Fi">Sci-Fi</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Thriller">Thriller</option>
+    </select>
+  </section>
+
+  <!-- ===== MOVIE GRID ===== -->
+  <main class="movie-grid" id="movieGrid">
+    <!-- Movie cards are added here automatically by script.js -->
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <p>Made with 🍿 by a BCA student learning web dev</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
