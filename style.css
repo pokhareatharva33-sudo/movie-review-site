@@ -9,17 +9,18 @@
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background-color: #14100f;
+  background: radial-gradient(circle at top, #1a0a2e 0%, #0a0210 60%);
   color: #f2e9e4;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 /* ===========================================
    HEADER
    =========================================== */
 .site-header {
-  background: linear-gradient(135deg, #2b1010, #14100f);
-  border-bottom: 3px solid #d4af37;
+  background: linear-gradient(135deg, #3b0a5c, #0a0210 70%);
+  border-bottom: 3px solid #a855f7;
   padding: 40px 20px;
   text-align: center;
 }
@@ -27,11 +28,11 @@ body {
 .logo {
   font-size: 2.5rem;
   letter-spacing: 1px;
-  color: #d4af37; /* gold accent */
+  color: #a855f7; /* purple accent */
 }
 
 .tagline {
-  color: #b5a8a0;
+  color: #c5b3dd;
   font-style: italic;
   margin-top: 8px;
 }
@@ -51,8 +52,8 @@ body {
 #genreFilter {
   padding: 10px 15px;
   border-radius: 6px;
-  border: 1px solid #4a3c38;
-  background-color: #1f1a18;
+  border: 1px solid #5b3d7a;
+  background-color: #170a26;
   color: #f2e9e4;
   font-size: 1rem;
 }
@@ -63,7 +64,7 @@ body {
 
 #searchInput:focus,
 #genreFilter:focus {
-  outline: 2px solid #d4af37;
+  outline: 2px solid #a855f7;
 }
 
 /* ===========================================
@@ -79,23 +80,24 @@ body {
 }
 
 .movie-card {
-  background-color: #1f1a18;
-  border: 1px solid #332826;
+  background-color: #170a26;
+  border: 1px solid #3d2a52;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .movie-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 10px 25px rgba(168, 85, 247, 0.25);
 }
 
 .poster {
   width: 100%;
   height: 300px;
   object-fit: cover;
-  border-bottom: 3px solid #d4af37;
+  border-bottom: 3px solid #a855f7;
 }
 
 .movie-info {
@@ -110,13 +112,13 @@ body {
 
 .movie-meta {
   font-size: 0.85rem;
-  color: #b5a8a0;
+  color: #c5b3dd;
   margin-bottom: 10px;
 }
 
 .movie-review {
   font-size: 0.9rem;
-  color: #d9cfc8;
+  color: #e5d9f2;
   margin-bottom: 12px;
 }
 
@@ -126,7 +128,7 @@ body {
 .stars {
   font-size: 1.3rem;
   cursor: pointer;
-  color: #4a3c38; /* empty star color */
+  color: #5b3d7a; /* empty star color */
   user-select: none;
 }
 
@@ -135,7 +137,7 @@ body {
 }
 
 .stars .star.filled {
-  color: #d4af37;
+  color: #a855f7;
 }
 
 /* ===========================================
@@ -144,7 +146,7 @@ body {
 .site-footer {
   text-align: center;
   padding: 25px;
-  color: #7a6c66;
+  color: #9d8ab8;
   font-size: 0.85rem;
   border-top: 1px solid #2b2422;
 }
@@ -152,10 +154,6 @@ body {
 /* ===========================================
    MODAL (movie detail + review popup)
    =========================================== */
-.movie-card {
-  cursor: pointer;
-}
-
 .modal-overlay {
   display: none; /* JS switches this to "flex" to show it */
   position: fixed;
@@ -172,8 +170,8 @@ body {
 }
 
 .modal-box {
-  background-color: #1f1a18;
-  border: 1px solid #4a3c38;
+  background-color: #170a26;
+  border: 1px solid #5b3d7a;
   border-radius: 12px;
   max-width: 500px;
   width: 100%;
@@ -196,18 +194,18 @@ body {
 }
 
 .modal-close:hover {
-  color: #d4af37;
+  color: #a855f7;
 }
 
 .modal-poster {
   width: 140px;
   border-radius: 8px;
-  border: 2px solid #d4af37;
+  border: 2px solid #a855f7;
   margin-bottom: 16px;
 }
 
 .modal-box h2 {
-  color: #d4af37;
+  color: #a855f7;
   margin-bottom: 4px;
 }
 
@@ -219,26 +217,26 @@ body {
 
 .modal-divider {
   border: none;
-  border-top: 1px solid #332826;
+  border-top: 1px solid #3d2a52;
   margin: 20px 0;
 }
 
 .user-review {
-  background-color: #14100f;
-  border: 1px solid #332826;
+  background-color: #0a0210;
+  border: 1px solid #3d2a52;
   border-radius: 8px;
   padding: 10px 14px;
   margin-bottom: 10px;
 }
 
 .user-review .reviewer-name {
-  color: #d4af37;
+  color: #a855f7;
   font-weight: bold;
   font-size: 0.9rem;
 }
 
 .user-review .reviewer-date {
-  color: #7a6c66;
+  color: #9d8ab8;
   font-size: 0.75rem;
   margin-left: 8px;
 }
@@ -246,11 +244,11 @@ body {
 .user-review p {
   margin-top: 4px;
   font-size: 0.9rem;
-  color: #d9cfc8;
+  color: #e5d9f2;
 }
 
 .no-reviews {
-  color: #7a6c66;
+  color: #9d8ab8;
   font-size: 0.9rem;
   font-style: italic;
 }
@@ -265,8 +263,8 @@ body {
 #reviewForm textarea {
   padding: 10px 12px;
   border-radius: 6px;
-  border: 1px solid #4a3c38;
-  background-color: #14100f;
+  border: 1px solid #5b3d7a;
+  background-color: #0a0210;
   color: #f2e9e4;
   font-family: inherit;
   font-size: 0.95rem;
@@ -279,8 +277,8 @@ body {
 
 #reviewForm button {
   align-self: flex-start;
-  background-color: #d4af37;
-  color: #1f1a18;
+  background-color: #a855f7;
+  color: #170a26;
   border: none;
   padding: 10px 20px;
   border-radius: 6px;
@@ -289,7 +287,7 @@ body {
 }
 
 #reviewForm button:hover {
-  background-color: #e8c458;
+  background-color: #c084fc;
 }
 
 /* ===========================================
