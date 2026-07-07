@@ -5,68 +5,52 @@
 // ===========================================
 const movies = [
   {
-    title: "3 Idiots",
+    title: "Galaxy Drift",
+    genre: "Sci-Fi",
+    year: 2023,
+    review: "A visually stunning space adventure with a story that keeps you guessing till the last scene.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Galaxy+Drift"
+  },
+  {
+    title: "The Last Verdict",
+    genre: "Drama",
+    year: 2022,
+    review: "Powerful courtroom drama carried by outstanding performances from the lead cast.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=The+Last+Verdict"
+  },
+  {
+    title: "Rickshaw Riot",
     genre: "Comedy",
-    year: 2009,
-    review: "A hilarious yet moving take on the pressure Indian students face to conform. Balances laughs and life lessons better than almost any film in its genre.",
-    rating: 5,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=3+Idiots"
+    year: 2021,
+    review: "A laugh-out-loud comedy of errors set in the streets of Mumbai. Simple but effective.",
+    rating: 3,
+    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Rickshaw+Riot"
   },
   {
-    title: "Inception",
-    genre: "Sci-Fi",
-    year: 2010,
-    review: "A mind-bending heist through layers of dreams. Demands full attention, but rewards it with one of the most original concepts in modern cinema.",
-    rating: 5,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Inception"
-  },
-  {
-    title: "Dangal",
-    genre: "Drama",
-    year: 2016,
-    review: "An inspiring true story of a father training his daughters to become wrestling champions. The final match sequence is genuinely nerve-wracking.",
-    rating: 5,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Dangal"
-  },
-  {
-    title: "The Dark Knight",
-    genre: "Action",
-    year: 2008,
-    review: "Elevated the superhero genre with a grounded, morally complex story. The performance as the villain remains one of the most talked-about in film history.",
-    rating: 5,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=The+Dark+Knight"
-  },
-  {
-    title: "Andhadhun",
+    title: "Silent Hunter",
     genre: "Thriller",
-    year: 2018,
-    review: "A darkly funny, twist-filled thriller about a blind pianist caught up in a murder. Keeps you guessing right up to the ambiguous final shot.",
+    year: 2024,
+    review: "Tense, edge-of-your-seat thriller, though the ending feels a little rushed.",
     rating: 4,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Andhadhun"
+    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Silent+Hunter"
   },
   {
-    title: "Interstellar",
-    genre: "Sci-Fi",
-    year: 2014,
-    review: "An emotional, ambitious journey through space and time. The visuals and score are stunning, even if the science lectures slow the pace at times.",
-    rating: 4,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Interstellar"
-  },
-  {
-    title: "Zindagi Na Milegi Dobara",
-    genre: "Drama",
-    year: 2011,
-    review: "Three friends on a road trip through Spain confront their fears and figure out what they actually want from life. Warm, funny, and easy to rewatch.",
-    rating: 4,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=ZNMD"
-  },
-  {
-    title: "Baahubali: The Beginning",
+    title: "Iron Fury",
     genre: "Action",
-    year: 2015,
-    review: "A larger-than-life epic with massive scale and ambition. The world-building and action set pieces set a new bar for Indian cinema.",
-    rating: 4,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Baahubali"
+    year: 2020,
+    review: "Non-stop action sequences, but the plot takes a backseat to the explosions.",
+    rating: 3,
+    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Iron+Fury"
+  },
+  {
+    title: "Monsoon Diaries",
+    genre: "Drama",
+    year: 2023,
+    review: "A quiet, heartfelt story about family and forgiveness set during the rains.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Monsoon+Diaries"
   }
 ];
 
@@ -163,7 +147,7 @@ function applyFilters() {
     const matchesGenre = selectedGenre === "all" || movie.genre === selectedGenre;
     return matchesSearch && matchesGenre;
   });
-  
+
   renderMovies(filtered);
 }
 
@@ -175,4 +159,3 @@ genreFilter.addEventListener("change", applyFilters);
 // 7. INITIAL LOAD — show all movies when the page opens
 // ===========================================
 renderMovies(movies);
-
