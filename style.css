@@ -150,6 +150,149 @@ body {
 }
 
 /* ===========================================
+   MODAL (movie detail + review popup)
+   =========================================== */
+.movie-card {
+  cursor: pointer;
+}
+
+.modal-overlay {
+  display: none; /* JS switches this to "flex" to show it */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-box {
+  background-color: #1f1a18;
+  border: 1px solid #4a3c38;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 30px;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #f2e9e4;
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #d4af37;
+}
+
+.modal-poster {
+  width: 140px;
+  border-radius: 8px;
+  border: 2px solid #d4af37;
+  margin-bottom: 16px;
+}
+
+.modal-box h2 {
+  color: #d4af37;
+  margin-bottom: 4px;
+}
+
+.modal-box h3 {
+  color: #f2e9e4;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+.modal-divider {
+  border: none;
+  border-top: 1px solid #332826;
+  margin: 20px 0;
+}
+
+.user-review {
+  background-color: #14100f;
+  border: 1px solid #332826;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+.user-review .reviewer-name {
+  color: #d4af37;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.user-review .reviewer-date {
+  color: #7a6c66;
+  font-size: 0.75rem;
+  margin-left: 8px;
+}
+
+.user-review p {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #d9cfc8;
+}
+
+.no-reviews {
+  color: #7a6c66;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+#reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#reviewForm input,
+#reviewForm textarea {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #4a3c38;
+  background-color: #14100f;
+  color: #f2e9e4;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+#reviewForm textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+#reviewForm button {
+  align-self: flex-start;
+  background-color: #d4af37;
+  color: #1f1a18;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#reviewForm button:hover {
+  background-color: #e8c458;
+}
+
+/* ===========================================
    RESPONSIVE TWEAKS
    =========================================== */
 @media (max-width: 480px) {
