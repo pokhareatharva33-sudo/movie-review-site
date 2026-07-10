@@ -93,6 +93,7 @@ const modalPoster = document.getElementById("modalPoster");
 const modalTitle = document.getElementById("modalTitle");
 const modalMeta = document.getElementById("modalMeta");
 const modalOriginalReview = document.getElementById("modalOriginalReview");
+const modalCast = document.getElementById("modalCast");
 const modalUserReviews = document.getElementById("modalUserReviews");
 const reviewForm = document.getElementById("reviewForm");
 const reviewerName = document.getElementById("reviewerName");
@@ -120,7 +121,7 @@ function buildStars(rating, movieIndex) {
 // Takes a list of movies and draws a card for each one
 // ===========================================
 function renderMovies(movieList) {
-  movieGrid.innerHTML = ""; // clear the grid first
+  movieGrid.innerHTML = "";
 
   if (movieList.length === 0) {
     movieGrid.innerHTML = "<p style='color:#b5a8a0;'>No movies match your search.</p>";
@@ -128,8 +129,6 @@ function renderMovies(movieList) {
   }
 
   movieList.forEach((movie) => {
-    // find this movie's real index in the original array
-    // (so star-clicks update the correct movie even after filtering)
     const originalIndex = movies.indexOf(movie);
 
     const card = document.createElement("div");
@@ -145,7 +144,6 @@ function renderMovies(movieList) {
       </div>
     `;
 
-    // Open the review modal when the card itself is clicked
     card.addEventListener("click", () => {
       openMovieModal(movie);
     });
@@ -167,15 +165,13 @@ function attachStarListeners() {
 
     stars.forEach((star) => {
       star.addEventListener("click", (event) => {
-        event.stopPropagation(); // don't let this click also open the movie modal
+        event.stopPropagation();
 
         const movieIndex = group.getAttribute("data-movie");
         const newRating = parseInt(star.getAttribute("data-value"));
 
-        // update the data
         movies[movieIndex].rating = newRating;
 
-        // re-render so the change shows immediately
         applyFilters();
       });
     });
@@ -198,31 +194,22 @@ function applyFilters() {
   renderMovies(filtered);
 }
 
-// Run the filter every time the user types or changes the dropdown
 searchInput.addEventListener("input", applyFilters);
 genreFilter.addEventListener("change", applyFilters);
 
 // ===========================================
 // 7. USER REVIEWS — SAVED IN localStorage
-// localStorage only stores data in THIS browser, on THIS device.
-// It's perfect for a personal project/demo, but other visitors
-// won't see reviews added on someone else's computer.
 // ===========================================
-
-// Get all saved reviews as one object, e.g.
-// { "Inception": [{name: "Rahul", text: "Loved it", date: "..."}], ... }
 function getAllUserReviews() {
   const data = localStorage.getItem("movieUserReviews");
   return data ? JSON.parse(data) : {};
 }
 
-// Get just the reviews for one movie
 function getReviewsForMovie(title) {
   const allReviews = getAllUserReviews();
   return allReviews[title] || [];
 }
 
-// Add a new review for a movie and save it back to localStorage
 function addReviewForMovie(title, name, text) {
   const allReviews = getAllUserReviews();
 
@@ -240,7 +227,7 @@ function addReviewForMovie(title, name, text) {
 }
 
 // ===========================================
-// 8. MODAL — OPEN, CLOSE, AND DISPLAY REVIEWS
+// 8. MODAL — OPEN, CLOSE, AND DISPLAY REVIEWS + CAST
 // ===========================================
 function openMovieModal(movie) {
   currentMovieTitle = movie.title;
@@ -251,6 +238,7 @@ function openMovieModal(movie) {
   modalMeta.textContent = movie.genre + " • " + movie.year;
   modalOriginalReview.textContent = movie.review;
 
+  renderCast(movie);
   renderUserReviews(movie.title);
 
   reviewForm.reset();
@@ -260,6 +248,27 @@ function openMovieModal(movie) {
 function closeMovieModal() {
   modalOverlay.classList.remove("active");
   currentMovieTitle = null;
+}
+
+function renderCast(movie) {
+  const cast = movie.cast || [];
+
+  if (cast.length === 0) {
+    modalCast.innerHTML = '<p class="no-cast">Cast info loading or unavailable...</p>';
+    return;
+  }
+
+  modalCast.innerHTML = cast
+    .map(
+      (actor) => `
+      <div class="cast-member">
+        <img class="cast-photo" src="${actor.photo}" alt="${actor.name}" />
+        <div class="cast-name">${actor.name}</div>
+        <div class="cast-character">${actor.character}</div>
+      </div>
+    `
+    )
+    .join("");
 }
 
 function renderUserReviews(title) {
@@ -283,19 +292,16 @@ function renderUserReviews(title) {
     .join("");
 }
 
-// Close modal when clicking the X button
 modalClose.addEventListener("click", closeMovieModal);
 
-// Close modal when clicking the dark overlay (but not the box itself)
 modalOverlay.addEventListener("click", (event) => {
   if (event.target === modalOverlay) {
     closeMovieModal();
   }
 });
 
-// Handle the "Add Your Review" form submission
 reviewForm.addEventListener("submit", (event) => {
-  event.preventDefault(); // stop the page from refreshing
+  event.preventDefault();
 
   const name = reviewerName.value.trim();
   const text = reviewerText.value.trim();
@@ -303,15 +309,12 @@ reviewForm.addEventListener("submit", (event) => {
   if (name === "" || text === "") return;
 
   addReviewForMovie(currentMovieTitle, name, text);
-  renderUserReviews(currentMovieTitle); // refresh the list immediately
+  renderUserReviews(currentMovieTitle);
   reviewForm.reset();
 });
 
 // ===========================================
 // 9. FETCH REAL POSTERS FROM TMDb
-// For each movie, search TMDb by title and grab its official poster.
-// Runs once when the page loads; cards start with placeholders and
-// update automatically as each real poster arrives.
 // ===========================================
 async function fetchPosterForMovie(movie) {
   try {
@@ -319,24 +322,62 @@ async function fetchPosterForMovie(movie) {
     const response = await fetch(url);
     const data = await response.json();
 
-    if (data.results && data.results.length > 0 && data.results[0].poster_path) {
-      movie.poster = TMDB_IMG_BASE + data.results[0].poster_path;
+    if (data.results && data.results.length > 0) {
+      const result = data.results[0];
+      movie.tmdbId = result.id;
+      if (result.poster_path) {
+        movie.poster = TMDB_IMG_BASE + result.poster_path;
+      }
     }
   } catch (error) {
-    // If TMDb is unreachable or the key is invalid, just keep the placeholder
     console.error("Couldn't fetch poster for", movie.title, error);
   }
 }
 
+// ===========================================
+// 9b. FETCH CAST FROM TMDb
+// Uses the movie's TMDb id to get top cast members with photos.
+// ===========================================
+async function fetchCastForMovie(movie) {
+  if (!movie.tmdbId) {
+    movie.cast = [];
+    return;
+  }
+
+  try {
+    const url = `https://api.themoviedb.org/3/movie/${movie.tmdbId}/credits?api_key=${TMDB_API_KEY}`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.cast) {
+      movie.cast = data.cast.slice(0, 6).map((actor) => ({
+        name: actor.name,
+        character: actor.character,
+        photo: actor.profile_path
+          ? TMDB_IMG_BASE + actor.profile_path
+          : "https://placehold.co/140x140/170a26/a855f7?text=" + encodeURIComponent(actor.name.split(" ")[0])
+      }));
+    } else {
+      movie.cast = [];
+    }
+  } catch (error) {
+    console.error("Couldn't fetch cast for", movie.title, error);
+    movie.cast = [];
+  }
+}
+
 async function fetchAllPosters() {
-  // Fetch all posters in parallel, then re-render once they're ready
-  await Promise.all(movies.map(fetchPosterForMovie));
-  applyFilters(); // re-draw the grid with real posters now in place
+  await Promise.all(
+    movies.map(async (movie) => {
+      await fetchPosterForMovie(movie);
+      await fetchCastForMovie(movie);
+    })
+  );
+  applyFilters();
 }
 
 // ===========================================
 // 10. INITIAL LOAD
-// Show placeholders immediately, then swap in real posters once fetched.
 // ===========================================
 renderMovies(movies);
 fetchAllPosters();
