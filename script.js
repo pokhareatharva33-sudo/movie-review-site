@@ -1,7 +1,16 @@
 // ===========================================
+// 0. TMDb API SETUP
+// TMDb (The Movie Database) is a free, legitimate source for real movie posters.
+// Get your own free key at https://www.themoviedb.org/settings/api
+// ===========================================
+const TMDB_API_KEY = "a2a5d08adfc56245804ae6823ac0da54";
+const TMDB_IMG_BASE = "https://image.tmdb.org/t/p/w500";
+
+// ===========================================
 // 1. MOVIE DATA
 // Each movie is an object with details.
-// In a real project, this could come from an API instead.
+// "poster" starts as a placeholder and gets replaced with a real
+// poster from TMDb once it's fetched (see fetchAllPosters below).
 // ===========================================
 const movies = [
   {
@@ -10,7 +19,7 @@ const movies = [
     year: 2009,
     review: "A hilarious yet moving take on the pressure Indian students face to conform. Balances laughs and life lessons better than almost any film in its genre.",
     rating: 5,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=3+Idiots"
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=3+Idiots"
   },
   {
     title: "Inception",
@@ -18,7 +27,7 @@ const movies = [
     year: 2010,
     review: "A mind-bending heist through layers of dreams. Demands full attention, but rewards it with one of the most original concepts in modern cinema.",
     rating: 5,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Inception"
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Inception"
   },
   {
     title: "Dangal",
@@ -26,7 +35,7 @@ const movies = [
     year: 2016,
     review: "An inspiring true story of a father training his daughters to become wrestling champions. The final match sequence is genuinely nerve-wracking.",
     rating: 5,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Dangal"
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Dangal"
   },
   {
     title: "The Dark Knight",
@@ -34,7 +43,7 @@ const movies = [
     year: 2008,
     review: "Elevated the superhero genre with a grounded, morally complex story. The performance as the villain remains one of the most talked-about in film history.",
     rating: 5,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=The+Dark+Knight"
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=The+Dark+Knight"
   },
   {
     title: "Andhadhun",
@@ -42,7 +51,7 @@ const movies = [
     year: 2018,
     review: "A darkly funny, twist-filled thriller about a blind pianist caught up in a murder. Keeps you guessing right up to the ambiguous final shot.",
     rating: 4,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Andhadhun"
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Andhadhun"
   },
   {
     title: "Interstellar",
@@ -50,7 +59,7 @@ const movies = [
     year: 2014,
     review: "An emotional, ambitious journey through space and time. The visuals and score are stunning, even if the science lectures slow the pace at times.",
     rating: 4,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Interstellar"
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Interstellar"
   },
   {
     title: "Zindagi Na Milegi Dobara",
@@ -58,7 +67,7 @@ const movies = [
     year: 2011,
     review: "Three friends on a road trip through Spain confront their fears and figure out what they actually want from life. Warm, funny, and easy to rewatch.",
     rating: 4,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=ZNMD"
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=ZNMD"
   },
   {
     title: "Baahubali: The Beginning",
@@ -66,7 +75,7 @@ const movies = [
     year: 2015,
     review: "A larger-than-life epic with massive scale and ambition. The world-building and action set pieces set a new bar for Indian cinema.",
     rating: 4,
-    poster: "https://placehold.co/240x300/1f1a18/d4af37?text=Baahubali"
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Baahubali"
   }
 ];
 
@@ -299,6 +308,35 @@ reviewForm.addEventListener("submit", (event) => {
 });
 
 // ===========================================
-// 9. INITIAL LOAD — show all movies when the page opens
+// 9. FETCH REAL POSTERS FROM TMDb
+// For each movie, search TMDb by title and grab its official poster.
+// Runs once when the page loads; cards start with placeholders and
+// update automatically as each real poster arrives.
+// ===========================================
+async function fetchPosterForMovie(movie) {
+  try {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movie.title)}&year=${movie.year}`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.results && data.results.length > 0 && data.results[0].poster_path) {
+      movie.poster = TMDB_IMG_BASE + data.results[0].poster_path;
+    }
+  } catch (error) {
+    // If TMDb is unreachable or the key is invalid, just keep the placeholder
+    console.error("Couldn't fetch poster for", movie.title, error);
+  }
+}
+
+async function fetchAllPosters() {
+  // Fetch all posters in parallel, then re-render once they're ready
+  await Promise.all(movies.map(fetchPosterForMovie));
+  applyFilters(); // re-draw the grid with real posters now in place
+}
+
+// ===========================================
+// 10. INITIAL LOAD
+// Show placeholders immediately, then swap in real posters once fetched.
 // ===========================================
 renderMovies(movies);
+fetchAllPosters();
