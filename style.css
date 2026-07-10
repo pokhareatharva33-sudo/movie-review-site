@@ -128,7 +128,7 @@ body {
 .stars {
   font-size: 1.3rem;
   cursor: pointer;
-  color: #5b3d7a; /* empty star color */
+  color: #5b3d7a;
   user-select: none;
 }
 
@@ -155,7 +155,7 @@ body {
    MODAL (movie detail + review popup)
    =========================================== */
 .modal-overlay {
-  display: none; /* JS switches this to "flex" to show it */
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
@@ -248,6 +248,51 @@ body {
 }
 
 .no-reviews {
+  color: #9d8ab8;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* ===========================================
+   CAST SECTION (circular photos, IMDb-style)
+   =========================================== */
+.cast-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.cast-member {
+  flex: 0 0 auto;
+  width: 80px;
+  text-align: center;
+}
+
+.cast-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #a855f7;
+  background-color: #0a0210;
+  margin-bottom: 6px;
+}
+
+.cast-name {
+  font-size: 0.75rem;
+  color: #f2e9e4;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.cast-character {
+  font-size: 0.7rem;
+  color: #9d8ab8;
+  line-height: 1.2;
+}
+
+.no-cast {
   color: #9d8ab8;
   font-size: 0.9rem;
   font-style: italic;
