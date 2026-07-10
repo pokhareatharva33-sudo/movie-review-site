@@ -7,14 +7,17 @@ const TMDB_API_KEY = "a2a5d08adfc56245804ae6823ac0da54";
 const TMDB_IMG_BASE = "https://image.tmdb.org/t/p/w500";
 
 // ===========================================
-// 1. MOVIE DATA
-// Each movie is an object with details.
+// 1. MOVIE / SHOW DATA
+// Each item has a "mediaType": "movie" or "tv" — this tells the code
+// which TMDb endpoint to use when fetching posters and cast.
 // "poster" starts as a placeholder and gets replaced with a real
 // poster from TMDb once it's fetched (see fetchAllPosters below).
 // ===========================================
 const movies = [
+  // ---------- MOVIES ----------
   {
     title: "3 Idiots",
+    mediaType: "movie",
     genre: "Comedy",
     year: 2009,
     review: "A hilarious yet moving take on the pressure Indian students face to conform. Balances laughs and life lessons better than almost any film in its genre.",
@@ -23,6 +26,7 @@ const movies = [
   },
   {
     title: "Inception",
+    mediaType: "movie",
     genre: "Sci-Fi",
     year: 2010,
     review: "A mind-bending heist through layers of dreams. Demands full attention, but rewards it with one of the most original concepts in modern cinema.",
@@ -31,6 +35,7 @@ const movies = [
   },
   {
     title: "Dangal",
+    mediaType: "movie",
     genre: "Drama",
     year: 2016,
     review: "An inspiring true story of a father training his daughters to become wrestling champions. The final match sequence is genuinely nerve-wracking.",
@@ -39,6 +44,7 @@ const movies = [
   },
   {
     title: "The Dark Knight",
+    mediaType: "movie",
     genre: "Action",
     year: 2008,
     review: "Elevated the superhero genre with a grounded, morally complex story. The performance as the villain remains one of the most talked-about in film history.",
@@ -47,6 +53,7 @@ const movies = [
   },
   {
     title: "Andhadhun",
+    mediaType: "movie",
     genre: "Thriller",
     year: 2018,
     review: "A darkly funny, twist-filled thriller about a blind pianist caught up in a murder. Keeps you guessing right up to the ambiguous final shot.",
@@ -55,6 +62,7 @@ const movies = [
   },
   {
     title: "Interstellar",
+    mediaType: "movie",
     genre: "Sci-Fi",
     year: 2014,
     review: "An emotional, ambitious journey through space and time. The visuals and score are stunning, even if the science lectures slow the pace at times.",
@@ -63,6 +71,7 @@ const movies = [
   },
   {
     title: "Zindagi Na Milegi Dobara",
+    mediaType: "movie",
     genre: "Drama",
     year: 2011,
     review: "Three friends on a road trip through Spain confront their fears and figure out what they actually want from life. Warm, funny, and easy to rewatch.",
@@ -71,11 +80,128 @@ const movies = [
   },
   {
     title: "Baahubali: The Beginning",
+    mediaType: "movie",
     genre: "Action",
     year: 2015,
     review: "A larger-than-life epic with massive scale and ambition. The world-building and action set pieces set a new bar for Indian cinema.",
     rating: 4,
     poster: "https://placehold.co/240x300/170a26/a855f7?text=Baahubali"
+  },
+
+  // ---------- TV SERIES ----------
+  {
+    title: "Breaking Bad",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2008,
+    review: "A chemistry teacher's descent into the drug trade, told with some of the tightest writing and character work on television.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Breaking+Bad"
+  },
+  {
+    title: "Money Heist",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2017,
+    review: "A stylish, high-stakes heist thriller that turns a group of robbers into unlikely folk heroes across its many twists.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Money+Heist"
+  },
+  {
+    title: "Stranger Things",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2016,
+    review: "An addictive mix of 80s nostalgia, supernatural horror, and coming-of-age friendship that only gets bigger each season.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Stranger+Things"
+  },
+
+  // ---------- DRAMA SERIES ----------
+  {
+    title: "Sacred Games",
+    mediaType: "tv",
+    genre: "Drama",
+    year: 2018,
+    review: "A gritty, atmospheric crime drama set across Mumbai's underworld and political corridors, anchored by two magnetic lead performances.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Sacred+Games"
+  },
+  {
+    title: "The Crown",
+    mediaType: "tv",
+    genre: "Drama",
+    year: 2016,
+    review: "A lavish, meticulously researched dramatization of the British royal family, carried by strong performances across every era it covers.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=The+Crown"
+  },
+
+  // ---------- ANIME ----------
+  {
+    title: "Attack on Titan",
+    mediaType: "tv",
+    genre: "Anime",
+    year: 2013,
+    review: "A relentless, ever-escalating story about humanity's fight for survival, with some of the best plot twists in modern anime.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Attack+on+Titan"
+  },
+  {
+    title: "Demon Slayer",
+    mediaType: "tv",
+    genre: "Anime",
+    year: 2019,
+    review: "Gorgeous animation and heartfelt character moments elevate a fairly simple revenge story into something genuinely moving.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Demon+Slayer"
+  },
+  {
+    title: "Naruto",
+    mediaType: "tv",
+    genre: "Anime",
+    year: 2002,
+    review: "A coming-of-age ninja epic that, despite its length, built one of the most beloved casts and worlds in anime history.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Naruto"
+  },
+  {
+    title: "Death Note",
+    mediaType: "tv",
+    genre: "Anime",
+    year: 2006,
+    review: "A tense cat-and-mouse battle of wits between a genius vigilante and the detective hunting him. Gripping from the first episode.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Death+Note"
+  },
+
+  // ---------- CARTOONS ----------
+  {
+    title: "SpongeBob SquarePants",
+    mediaType: "tv",
+    genre: "Cartoon",
+    year: 1999,
+    review: "Endlessly quotable and genuinely funny for all ages, with a surreal sense of humor that still holds up decades later.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=SpongeBob"
+  },
+  {
+    title: "Avatar: The Last Airbender",
+    mediaType: "tv",
+    genre: "Cartoon",
+    year: 2005,
+    review: "A masterfully written animated series with real emotional depth, worldbuilding, and some of the best character arcs in the medium.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Avatar"
+  },
+  {
+    title: "Tom and Jerry",
+    mediaType: "tv",
+    genre: "Cartoon",
+    year: 1965,
+    review: "The classic cat-and-mouse slapstick that never really gets old, even generations after it first aired.",
+    rating: 3,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Tom+and+Jerry"
   }
 ];
 
@@ -104,7 +230,6 @@ let currentMovieTitle = null;
 
 // ===========================================
 // 3. BUILD A STAR RATING (1 to 5 stars)
-// Returns an HTML string like: ★★★★☆
 // ===========================================
 function buildStars(rating, movieIndex) {
   let starsHTML = '<div class="stars" data-movie="' + movieIndex + '">';
@@ -118,7 +243,6 @@ function buildStars(rating, movieIndex) {
 
 // ===========================================
 // 4. RENDER MOVIES TO THE PAGE
-// Takes a list of movies and draws a card for each one
 // ===========================================
 function renderMovies(movieList) {
   movieGrid.innerHTML = "";
@@ -315,10 +439,15 @@ reviewForm.addEventListener("submit", (event) => {
 
 // ===========================================
 // 9. FETCH REAL POSTERS FROM TMDb
+// For each item, search TMDb (movie or tv endpoint depending on mediaType)
 // ===========================================
 async function fetchPosterForMovie(movie) {
   try {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movie.title)}&year=${movie.year}`;
+    const endpoint = movie.mediaType === "tv" ? "tv" : "movie";
+    const yearParam = movie.mediaType === "tv"
+      ? `&first_air_date_year=${movie.year}`
+      : `&year=${movie.year}`;
+    const url = `https://api.themoviedb.org/3/search/${endpoint}?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movie.title)}${yearParam}`;
     const response = await fetch(url);
     const data = await response.json();
 
@@ -336,7 +465,6 @@ async function fetchPosterForMovie(movie) {
 
 // ===========================================
 // 9b. FETCH CAST FROM TMDb
-// Uses the movie's TMDb id to get top cast members with photos.
 // ===========================================
 async function fetchCastForMovie(movie) {
   if (!movie.tmdbId) {
@@ -345,7 +473,8 @@ async function fetchCastForMovie(movie) {
   }
 
   try {
-    const url = `https://api.themoviedb.org/3/movie/${movie.tmdbId}/credits?api_key=${TMDB_API_KEY}`;
+    const endpoint = movie.mediaType === "tv" ? "tv" : "movie";
+    const url = `https://api.themoviedb.org/3/${endpoint}/${movie.tmdbId}/credits?api_key=${TMDB_API_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
 
