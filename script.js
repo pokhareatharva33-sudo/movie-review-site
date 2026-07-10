@@ -116,6 +116,96 @@ const movies = [
     rating: 4,
     poster: "https://placehold.co/240x300/170a26/a855f7?text=Stranger+Things"
   },
+  {
+    title: "When Life Gives You Tangerines",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2025,
+    review: "A tender, generation-spanning Korean drama about love and hardship on Jeju Island, carried by a quietly devastating lead performance.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Tangerines"
+  },
+  {
+    title: "Business Proposal",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2022,
+    review: "A breezy, laugh-out-loud K-drama rom-com built around a fake-dating setup that turns out to be far more charming than it has any right to be.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Business+Proposal"
+  },
+  {
+    title: "Crash Landing on You",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2019,
+    review: "An unlikely cross-border romance that balances genuine tension with warmth and humor. One of the most beloved K-drama love stories.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Crash+Landing"
+  },
+  {
+    title: "Goblin",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2016,
+    review: "A fantasy romance about an immortal guardian seeking release from his curse. Gorgeous visuals and an emotional slow-burn love story.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Goblin"
+  },
+  {
+    title: "Itaewon Class",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2020,
+    review: "A determined ex-convict builds a restaurant empire to take down the corporation that ruined his family. Satisfying underdog storytelling.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Itaewon+Class"
+  },
+  {
+    title: "Hotel del Luna",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2019,
+    review: "A visually stunning fantasy about a hotel for ghosts, mixing supernatural mystery with a slow-burn romance and real emotional weight.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Hotel+del+Luna"
+  },
+  {
+    title: "It's Okay to Not Be Okay",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2020,
+    review: "A tender, beautifully shot drama about trauma and healing, with striking fairy-tale-inspired visuals throughout.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Its+Okay"
+  },
+  {
+    title: "Vincenzo",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2021,
+    review: "A mafia consigliere returns to Korea and takes on a corrupt corporation with style, dark comedy, and satisfying revenge plotting.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Vincenzo"
+  },
+  {
+    title: "Reply 1988",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2015,
+    review: "A warm, nostalgic slice-of-life drama about neighborhood friends growing up together. One of the most heartfelt ensemble casts in K-drama.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Reply+1988"
+  },
+  {
+    title: "Squid Game",
+    mediaType: "tv",
+    genre: "Series",
+    year: 2021,
+    review: "A brutal, socially charged survival thriller that turns childhood games into life-or-death stakes. Tense from start to finish.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Squid+Game"
+  },
 
   // ---------- DRAMA SERIES ----------
   {
@@ -202,6 +292,69 @@ const movies = [
     review: "The classic cat-and-mouse slapstick that never really gets old, even generations after it first aired.",
     rating: 3,
     poster: "https://placehold.co/240x300/170a26/a855f7?text=Tom+and+Jerry"
+  },
+  {
+    title: "Rick and Morty",
+    mediaType: "tv",
+    genre: "Cartoon",
+    year: 2013,
+    review: "A wildly inventive sci-fi comedy that swings between absurd humor and surprisingly dark, existential storytelling.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Rick+and+Morty"
+  },
+  {
+    title: "The Simpsons",
+    mediaType: "tv",
+    genre: "Cartoon",
+    year: 1989,
+    review: "The longest-running animated sitcom for a reason — sharp satire and a cast of characters that shaped animated comedy for decades.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=The+Simpsons"
+  },
+  {
+    title: "Adventure Time",
+    mediaType: "tv",
+    genre: "Cartoon",
+    year: 2010,
+    review: "A strange, whimsical world that starts as goofy kids' fun and slowly reveals surprising emotional depth and mythology.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Adventure+Time"
+  },
+  {
+    title: "Gravity Falls",
+    mediaType: "tv",
+    genre: "Cartoon",
+    year: 2012,
+    review: "A mystery-filled small-town adventure with sharp humor, likable siblings, and a satisfying long-running conspiracy plot.",
+    rating: 5,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Gravity+Falls"
+  },
+  {
+    title: "Phineas and Ferb",
+    mediaType: "tv",
+    genre: "Cartoon",
+    year: 2007,
+    review: "Endlessly creative daily inventions from two step-brothers, backed by catchy songs and a reliably funny secret-agent subplot.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Phineas+and+Ferb"
+  },
+  {
+    title: "Teen Titans",
+    mediaType: "tv",
+    genre: "Cartoon",
+    year: 2003,
+    review: "A fun blend of superhero action and comedy with a young team dynamic, occasionally diving into surprisingly heavy character arcs.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Teen+Titans"
+  },
+  {
+    title: "Ben 10",
+    mediaType: "tv",
+    genre: "Cartoon",
+    year: 2005,
+    review: "A kid with a watch full of alien transformations gets into constant trouble. Simple premise, but endlessly fun creature designs.",
+    rating: 4,
+    poster: "https://placehold.co/240x300/170a26/a855f7?text=Ben+10"
   }
 ];
 
@@ -440,6 +593,8 @@ reviewForm.addEventListener("submit", (event) => {
 // ===========================================
 // 9. FETCH REAL POSTERS FROM TMDb
 // For each item, search TMDb (movie or tv endpoint depending on mediaType)
+// and grab its official poster. Runs once on load; cards start with
+// placeholders and update automatically as each real poster arrives.
 // ===========================================
 async function fetchPosterForMovie(movie) {
   try {
@@ -465,6 +620,8 @@ async function fetchPosterForMovie(movie) {
 
 // ===========================================
 // 9b. FETCH CAST FROM TMDb
+// Uses the item's TMDb id + mediaType (grabbed above) to get the top
+// cast members along with their photos, for display in the review modal.
 // ===========================================
 async function fetchCastForMovie(movie) {
   if (!movie.tmdbId) {
